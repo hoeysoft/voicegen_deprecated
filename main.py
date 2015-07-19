@@ -14,7 +14,7 @@ os.system('clear')
 print 'voicegen'
 
 while True:
-    sentence = raw_input(':')
+    sentence = raw_input(':').strip()
     filename = gen_voice(sentence)
-    os.system('afplay {}'.format(filename))
     os.system('printf "[sound:{}]" | pbcopy'.format(filename))
+    os.system('afplay {}'.format(filename))
