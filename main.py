@@ -17,4 +17,4 @@ while True:
     sentence = raw_input(':')
     filename = gen_voice(sentence)
     os.system('afplay {}'.format(filename))
-    os.system('echo [sound:{}] | pbcopy'.format(filename))
+    os.system('printf "[sound:{}]" | pbcopy'.format(filename))
