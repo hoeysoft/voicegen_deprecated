@@ -1,3 +1,4 @@
+import os
 from HTMLParser import HTMLParser
 from gtts import gTTS
 
@@ -5,10 +6,15 @@ htmlp = HTMLParser()
 
 def gen_voice(sentence):
     underscored = ''.join(map(lambda x: x if x.isalnum() else '_', sentence))
-    gTTS(sentence).save(underscored + '.mp3')
+    filename = underscored + '.mp3'
+    gTTS(sentence).save(filename)
+    return filename
 
-with open('input.txt') as f:
-    for line in f:
-        raw = line.split('\t')[0]
-        sentence = htmlp.unescape(raw.decode('utf-8'))
-        gen_voice(sentence)
+os.system('clear')
+print 'voicegen'
+
+while True:
+    sentence = raw_input(':')
+    filename = gen_voice(sentence)
+    os.system('afplay {}'.format(filename))
+    os.system('echo [sound:{}] | pbcopy'.format(filename))
