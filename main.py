@@ -4,6 +4,7 @@ from gtts import gTTS
 
 htmlp = HTMLParser()
 
+
 def gen_voice(sentence):
     underscored = ''.join(map(lambda x: x if x.isalnum() else '_', sentence))
     filename = underscored + '.mp3'
@@ -14,7 +15,7 @@ os.system('clear')
 print 'voicegen'
 
 while True:
-    sentence = raw_input(':').strip()
+    sentence = raw_input('voicegen:').strip()
     filename = gen_voice(sentence)
     os.system('printf "[sound:{}]" | pbcopy'.format(filename))
     os.system('afplay {}'.format(filename))
